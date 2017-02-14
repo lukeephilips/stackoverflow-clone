@@ -3,7 +3,7 @@
 <h2>Questions:</h2>
 <% @questions.each do |question| %>
 <div class="well">
-<p> <%= question.title %> </p>
+<p> <%= link_to question.title, question_path(question) %> </p>
 <h5>Asked by: <%= question.user.username %></h5>
 <% if question.user == current_user %>
   <%= link_to "Edit", edit_question_path(question) %>

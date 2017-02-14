@@ -1,0 +1,13 @@
+<h1> <%= @question.title %> </h1>
+<hr>
+<% @question.answers.each do |answer| %>
+    <h3><%= answer.content %></h3>
+    <p><%= answer.user.username %></p>
+    <% if answer.user == current_user %>
+    <p> <%= link_to "Edit", edit_question_answer_path(@question, answer) %> | <%= link_to "Delete", question_answer_path(@question, answer), :data => {:confirm => "Really really?",
+                                                                        :method => "delete"} %> </p>
+    <% end %>
+    <hr>
+<% end %>
+
+<%= link_to "Add an answer", new_question_answer_path(@question) %>

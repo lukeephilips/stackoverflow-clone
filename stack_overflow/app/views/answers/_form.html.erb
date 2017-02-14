@@ -1,0 +1,6 @@
+<%= form_for [@question, @answer] do |q| %>
+  <%= q.label :content %>
+  <%= q.text_area :content %>
+  <%= q.hidden_field :user_id, value: current_user.id %>
+  <%= q.submit %>
+  <% end %>
