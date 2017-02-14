@@ -9,9 +9,34 @@
   </head>
 
   <body>
+    <nav class="navbar">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"></a>
+          </div>
+          <div class="navbar-text navbar-right">
+            <% if current_user %>Logged in as <strong><%= current_user.email %></strong>
+            <%= link_to "Logout", log_out_path, :class => 'navbar-link'  %>
+            <% else %>
+            <%= link_to "Sign up", new_user_path, :class => 'navbar-link'  %> |
+            <%= link_to "Login", log_in_path, :class => 'navbar-link'  %>
+            <% end %>
+          </div>
+        </div>
+      </nav>
     <div class="container">
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
+      <% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>" >
+        <%= value %>
+      </div>
+    <% end %>
       <%= yield %>
     </div>
   </body>
