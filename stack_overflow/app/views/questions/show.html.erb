@@ -1,8 +1,11 @@
 <h1> <%= @question.title %> </h1>
 <hr>
-<% @question.answers.each do |answer| %>
-    <h3><%= answer.content %></h3>
-    <p><%= answer.user.username %></p>
+<% @question.answers.order(votes_total: :desc).each do |answer| %>
+    <p><%= answer.content %></p>
+    <h3>By: <%= answer.user.username %></h3>
+    <h3>Score: <%= answer.get_upvotes.size %></h3>
+    <%= link_to "", like_answer_path(answer), method: :put, class: "glyphicon glyphicon-thumbs-up icon", style: "color: green" %> |
+    <%= link_to "", dislike_answer_path(answer), method: :put, class: "glyphicon glyphicon-thumbs-down icon", style: "color: darkred" %>
     <% if answer.user == current_user %>
     <p> <%= link_to "Edit", edit_question_answer_path(@question, answer) %> | <%= link_to "Delete", question_answer_path(@question, answer), :data => {:confirm => "Really really?",
                                                                         :method => "delete"} %> </p>

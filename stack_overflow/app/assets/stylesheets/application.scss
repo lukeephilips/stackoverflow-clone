@@ -18,6 +18,24 @@
  $bgHighlight: #8e44ad;
  $colDefault: #ecf0f1;
  $colHover: #ecdbff;
+.icon{
+  font-size: 2em;
+}
+ .input-group {
+   .input-group-addon {
+    width: 100px;
+    background-color: #ddd1e7;
+  }
+  .form-control {
+    width: 400px;
+  }
+ }
+ .btn {
+   margin-top: 5gpx;
+   width: 100px;
+   background-color: lightblue;
+   border: 1px maroon solid;
+ }
 
 .navbar-right {
   margin-right: 20px;

@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-
+  before_filter :authorize
   def new
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new
@@ -37,6 +37,17 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @answer.destroy
     redirect_to question_path(question)
+  end
+
+  def upvote
+    @answer = Answer.find(params[:id])
+    @answer.upvote_by current_user
+    redirect_to :back
+  end
+  def downvote
+    @answer = Answer.find(params[:id])
+    @answer.downvote_by current_user
+    redirect_to :back
   end
 
 private

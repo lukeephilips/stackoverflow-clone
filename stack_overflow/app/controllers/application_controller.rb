@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  def authorize
+     redirect_to log_in_path unless current_user
+   end
+
+  
 end

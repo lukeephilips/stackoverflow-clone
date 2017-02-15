@@ -1,10 +1,13 @@
 <h1>Welcome to our website!</h1>
 
 <h2>Questions:</h2>
-<% @questions.each do |question| %>
+<% @questions.order(:created_at).each do |question| %>
 <div class="well">
 <p> <%= link_to question.title, question_path(question) %> </p>
+<h3>Score: <%= question.get_upvotes.size %></h3>
 <h5>Asked by: <%= question.user.username %></h5>
+<%= link_to "", like_question_path(question), method: :put, class: "glyphicon glyphicon-thumbs-up icon", style: "color: green" %> |
+<%= link_to "", dislike_question_path(question), method: :put, class: "glyphicon glyphicon-thumbs-down icon", style: "color: darkred" %>
 <% if question.user == current_user %>
   <%= link_to "Edit", edit_question_path(question) %>
   <%= link_to "Delete", question_path(question), :data => {:confirm => "Are you sure?", :method => "delete"} %>

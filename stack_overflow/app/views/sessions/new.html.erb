@@ -1,13 +1,16 @@
+<h3>Please log in to contribute to forum</h3>
+
 <%=form_tag log_in_path, :method => :post do%>
 
-<%=label_tag :email %>
+<div class="input-group">
+  <span class="input-group-addon">Email</span>
+  <%=text_field_tag :email, nil, class: 'form-control' %>
+</div>
+<div class="input-group">
+  <span class="input-group-addon">Password</span>
+  <%=password_field_tag :password, nil, class: 'form-control' %>
+</div>
 
-<%=text_field_tag :email %>
-
-<%=label_tag :password %>
-
-<%=password_field_tag :password %>
-
-<%=submit_tag "Log in" %>
+<%=submit_tag "Log in", class: 'btn' %>
 
 <%end%>
